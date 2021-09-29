@@ -1,6 +1,6 @@
-# Grupo-11-K
+# GymTech
 
-GymTech
+Grupo 11
 
 Sobre o grupo:
 
