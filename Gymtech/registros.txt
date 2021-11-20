@@ -1,0 +1,6 @@
+email@cesar.school
+senha1234
+email.2@cesar.school
+senha2345
+email.3@cesar.school
+senha3456
