@@ -176,19 +176,16 @@ int main(int argc, char const *argv[])
         char fim;
         while (opcao != 4) {
             printf("\nGYMTECH\n");
-            printf("1-Pesquisar\n2-Meus Grupos\n3-Meu Perfil\n4-Check-In\n5-Sair\n>> ");
+            printf("1-Pesquisar\n2-Meu Perfil\n3-Check-In\n4-Sair\n>> ");
             scanf("%d", &opcao);
             switch (opcao) {
             case 1:
                 buscar();
                 break;
             case 2:
-                /*grupos*/
-                break;
-            case 3:
                 perfil(user.nome, p);
                 break;
-            case 4:
+            case 3:
                 if(strcmp(user.plano, "Basic\n") == 0) {
                     checkin(p, 1);
                 }
@@ -210,7 +207,7 @@ int main(int argc, char const *argv[])
                 }
                 printf("Check-in confirmado!\n");
                 break;
-            case 5:
+            case 4:
                 printf("Voce tem certeza? (S) (N)\n>> ");
                 scanf(" %c", &fim);
                 break;
