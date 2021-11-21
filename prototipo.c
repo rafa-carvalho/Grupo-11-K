@@ -66,7 +66,7 @@ struct usuario {
     char plano[max];
 };
 
-char validacao_login(char email[max], char senha[max])
+char validacao_login(char email[], char senha[])
 {
     FILE *arq;
     char email_atual[max], senha_atual[max], checagem = 'F';
@@ -83,19 +83,19 @@ char validacao_login(char email[max], char senha[max])
     return checagem;
 }
 
-void perfil(char nome_user[max], struct pilha *p)
+void perfil(char nome_user[], char email_user[], char empresa_user[], char plano_user[],struct pilha *p)
 {
     int opcao_perfil, opcao_compra;
-    while (opcao_perfil != 4) {
+    while (opcao_perfil != 3) {
         printf("\nPerfil: %s", nome_user);
-        printf("1-Frequencia\n2-Beneficios\n3-Conquistas\n4-Sair\n>> ");
+        printf("(1) Informacoes da conta\n(2) Beneficios\n(3) Sair\n>> ");
         scanf("%d", &opcao_perfil);
         switch (opcao_perfil) {
         case 1:
-            printf("\n%d pontos\n", pontos_total(p));
+            printf("Email: %sEmpresa: %sPlano: %s", email_user, empresa_user, plano_user);
             break;
         case 2:
-            printf("\n%d pontos\n", pontos_total(p));
+            printf("%d pontos\n", pontos_total(p));
             printf("*Pagina com produtos* EX:\n(1) CUPOM 10%% XXX - 10 pontos\n>> ");
             scanf("%d", &opcao_compra);
             switch (opcao_compra) {
@@ -103,16 +103,14 @@ void perfil(char nome_user[max], struct pilha *p)
                 if(pontos_total(p) >= 10) {
                     for(int i = 0; i < 10; i++)
                         gastar(p);
+                    printf("Compra efetuada com sucesso!\n");
                 }
                 else
-                    printf("Voce nao tem pontos suficiente\n");
+                    printf("Voce nao tem pontos suficientes.\n");
                 break;
             default:
                 break;
             }
-            break;
-        case 3:
-            /*pagina de trofeus e conquistas*/
             break;
         default:
             break;
@@ -176,14 +174,14 @@ int main(int argc, char const *argv[])
         char fim;
         while (opcao != 4) {
             printf("\nGYMTECH\n");
-            printf("1-Pesquisar\n2-Meu Perfil\n3-Check-In\n4-Sair\n>> ");
+            printf("(1) Pesquisar\n(2) Meu Perfil\n(3) Check-In\n(4) Sair\n>> ");
             scanf("%d", &opcao);
             switch (opcao) {
             case 1:
                 buscar();
                 break;
             case 2:
-                perfil(user.nome, p);
+                perfil(user.nome, user.email, user.empresa, user.plano, p);
                 break;
             case 3:
                 if(strcmp(user.plano, "Basic\n") == 0) {
@@ -221,7 +219,7 @@ int main(int argc, char const *argv[])
         }
     }
     else
-        printf("Login invalido\n");
+        printf("Login invalido.\n");
 
     free(p);
     return 0;
